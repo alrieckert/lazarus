@@ -4173,7 +4173,7 @@ begin
   Result:=Parent<>nil;
 end;
 
-procedure TAnchorDockHostSite.Undock;
+{procedure TAnchorDockHostSite.Undock;
 var
   p: TPoint;
 begin
@@ -4183,7 +4183,20 @@ begin
   Parent:=nil;
   SetBounds(Left+p.x,Top+p.y,Width,Height);
   EnableAutoSizing;
-end;
+end;}
+
+procedure TAnchorDockHostSite.Undock;
+var
+  p: TPoint;
+begin
+  if Parent=nil then exit;
+  DisableAutoSizing;
+  p := Point(0,0);
+  p := ClientToScreen(p);
+  Parent:=nil;
+  SetBounds(p.x,p.y,Width,Height);
+  EnableAutoSizing;
+end;  
 
 function TAnchorDockHostSite.CanMerge: boolean;
 begin
