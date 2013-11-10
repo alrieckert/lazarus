@@ -691,7 +691,7 @@ type
     FOnSelectEditor: TSelectEditorEvent;
     FOnValidateEntry: TValidateEntryEvent;
     FGridLineColor: TColor;
-    FFixedcolor, FFixedHotColor, FFocusColor, FSelectedColor: TColor;
+    FFixedcolor, FFixedHotColor, FFocusColor, FSelectedColor, FSelectedFontColor: TColor;
     FFocusRectVisible: boolean;
     FCols,FRows: TList;
     FsaveOptions: TSaveOptions;
@@ -974,6 +974,7 @@ type
     function  GetLastVisibleColumn: Integer;
     function  GetLastVisibleRow: Integer;
     function  GetSelectedColor: TColor; virtual;
+    function  GetSelectedFontColor: TColor; virtual;
     function  GetTitleShowPrefix(Column: Integer): boolean;
     function  GetTruncCellHintText(ACol, ARow: Integer): string; virtual;
     function  GridColumnFromColumnIndex(ColumnIndex: Integer): Integer;
@@ -1035,6 +1036,7 @@ type
     procedure SetFixedCols(const AValue: Integer); virtual;
     procedure SetRawColWidths(ACol: Integer; AValue: Integer);
     procedure SetSelectedColor(const AValue: TColor); virtual;
+    procedure SetSelectedFontColor(const AValue: TColor); virtual;
     procedure ShowCellHintWindow(APoint: TPoint);
     procedure SizeChanged(OldColCount, OldRowCount: Integer); virtual;
     procedure Sort(ColSorting: Boolean; index,IndxFrom,IndxTo:Integer); virtual;
@@ -1112,6 +1114,7 @@ type
     property SaveOptions: TSaveOptions read FsaveOptions write FSaveOptions;
     property SelectActive: Boolean read FSelectActive write SetSelectActive;
     property SelectedColor: TColor read GetSelectedColor write SetSelectedColor;
+    property SelectedFontColor: TColor read GetSelectedFontColor write SetSelectedFontColor;
     property SelectedColumn: TGridColumn read GetSelectedColumn;
     property Selection: TGridRect read GetSelection write SetSelection;
     property ScrollBars: TScrollStyle read FScrollBars write SetScrollBars default ssAutoBoth;
@@ -1282,6 +1285,7 @@ type
     property RowHeights;
     property SaveOptions;
     property SelectedColor;
+    property SelectedFontColor;
     property SelectedColumn;
     property Selection;
     property StrictSort;
@@ -3498,7 +3502,7 @@ begin
       Canvas.Brush.Color := SelectedColor;
       SetCanvasFont(GetColumnFont(aCol, False));
       if not IsCellButtonColumn(point(aCol,aRow)) then
-        Canvas.Font.Color := clHighlightText;
+        Canvas.Font.Color := SelectedFontColor; //Canvas.Font.Color := clHighlightText;
       FLastFont:=nil;
     end else begin
       AColor := GetColumnColor(aCol, gdFixed in AState);
