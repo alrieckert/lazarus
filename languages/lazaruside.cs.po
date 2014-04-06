@@ -2876,11 +2876,11 @@ msgstr "Uložený řádek"
 
 #: lazarusidestrconsts.dlgsaveeditorinfo
 msgid "Save editor info for closed files"
-msgstr "Ukládat informace editoru k zavřených souborech"
+msgstr "Ukládat informace editoru k zavřeným souborům"
 
 #: lazarusidestrconsts.dlgsaveeditorinfoproject
 msgid "Save editor info only for project files"
-msgstr "Ukládat informace editoru k souborům projektu"
+msgstr "Ukládat informace editoru jen k souborům projektu"
 
 #: lazarusidestrconsts.dlgscope
 msgid "Scope"
