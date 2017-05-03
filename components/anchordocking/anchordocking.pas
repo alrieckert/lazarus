@@ -398,7 +398,8 @@ type
     adhsFrame3D,
     adhsLine,
     adhsLines,
-    adhsPoints
+    adhsPoints,
+    adhsFrameRect
     );
 const
   adhsDefault = adhsFrame3D;
@@ -677,7 +678,8 @@ const
     'Frame3D',
     'Line',
     'Lines',
-    'Points'
+    'Points',
+    'FrameRect'
     );
 
 function StrToADHeaderStyle(const s: string): TADHeaderStyle;
@@ -795,6 +797,19 @@ begin
         ly := ly - 4;
       end;
     end;
+    adhsFrameRect:
+        if Horizontal then begin
+           Canvas.Pen.Color:=clgray;
+           Canvas.Rectangle( r.Left+2, r.Top, r.Right-0, r.Bottom);
+           Canvas.Pen.Color:=clltgray;
+           Canvas.Rectangle( r.Left+2+2, r.Top+2, r.Right-0-2, r.Bottom-2);
+        end
+        else begin
+          Canvas.Pen.Color:=clgray;
+          Canvas.Rectangle( r.Left, r.Top+0, r.Right, r.Bottom-2);
+          Canvas.Pen.Color:=clltgray;
+          Canvas.Rectangle( r.Left+2, r.Top+0+2, r.Right-2, r.Bottom-2-2);
+        end;
   end;
 end;
 
@@ -6471,4 +6486,3 @@ finalization
   FreeAndNil(DockMaster);
 
 end.
-
