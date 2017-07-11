@@ -5,6 +5,5 @@ To use them you also need to download and install
 at appropriate place the libQt5Pas.so (linux)
 or Qt5Pas.dll (ms windows) or Qt5Pas.framework (Darwin).
 
-For more information see:
-http://wiki.lazarus.freepascal.org/index.php/Qt_Interface
-
+For more information:
+http://wiki.lazarus.freepascal.org/Qt5_Interface
